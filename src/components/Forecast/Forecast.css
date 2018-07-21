@@ -1,0 +1,23 @@
+.forecaster {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -10px;
+}
+
+@media only screen and (max-width: 966px) {
+  .forecaster {
+    flex-flow: row wrap;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .forecaster {
+    flex-direction: column;
+  }
+}
+
+.forecaster>* {
+  margin: 10px;
+  height: 250px;
+}

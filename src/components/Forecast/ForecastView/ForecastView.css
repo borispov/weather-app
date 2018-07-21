@@ -1,0 +1,25 @@
+.ForecastView__weather {
+  box-shadow: 0 0 1px 2px #ffffff39;
+  font-family: sans-serif;
+  padding: 10px;
+  width: 125px;
+  height: 200px;
+}
+
+@media only screen and (max-width: 768px) {
+  .ForecastView__weather {
+    width: 100%;
+  }
+}
+
+.date {
+  font-weight: bold;
+}
+
+.desc {
+  color: blue;
+}
+
+p {
+  padding: 4px;
+}
