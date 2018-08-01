@@ -16,6 +16,7 @@ class App extends Component {
     const data = new FormData(event.target);
     let city = data.get('city');
     this.setState({ search: city })
+    event.target.reset();
   }
 
   shouldComponentUpdate(nextProps, nextState) {

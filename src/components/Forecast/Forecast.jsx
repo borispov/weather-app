@@ -18,9 +18,7 @@ class Forecast extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.cityName !== nextProps.cityName || !this.state.forecast.length) {
       const cityName = nextProps.cityName;
-      this.setState(() =>{return {cityName: cityName}})
-      this.setState({cityName: nextProps.cityName})
-      console.log(nextProps.cityName)
+      this.setState({cityName: cityName})
       this.getForecastData(nextProps.cityName);
       return true;
     }
