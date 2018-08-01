@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   margin: -10px;
+  color: white;
 }
 
 @media only screen and (max-width: 966px) {
@@ -20,4 +21,9 @@
 .forecaster>* {
   margin: 10px;
   height: 250px;
+}
+
+.forecaster__location {
+  color: white;
+  font-family: cursive;
 }

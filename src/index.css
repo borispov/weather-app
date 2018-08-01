@@ -2,7 +2,14 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
   /* background: linear-gradient(to bottom right, rgba(140, 70, 40, 0.6), rgba(80, 100, 160, 0.6)); */
-  background: linear-gradient( to bottom right, rgb(75, 120, 192), #1D56B0AA);
+  /* background: linear-gradient( to bottom right, rgb(75, 120, 192), #1D56B0AA); */
+   /* background-color: #0B2B35; */
+   background-image: url('./assets/img/weather.jpeg');
+   background-repeat: no-repeat;
+   background-position: 50% 50%;
+   background-color: rgba(0, 0, 0, 0.3);
+   background-blend-mode: darken;
+   background-attachment: fixed;
+   /* background-color: #1853B3; */
 }

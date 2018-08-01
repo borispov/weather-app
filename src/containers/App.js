@@ -8,7 +8,7 @@ class App extends Component {
 
   state = {
     input: '',
-    search: 'London',
+    search: '',
   } 
 
   submitHandler = (event) => {
@@ -31,9 +31,9 @@ class App extends Component {
     return (
       <div className="App">
         <Timer />
-        <Forecast cityName={this.state.search} />
+        <Forecast cityName={this.state.search}  />
         <br/>
-        <p className="cityName">{this.state.search}</p>
+        {/* <p className="cityName">{this.state.search}</p> */}
         <Form click={this.submitHandler} />
       </div>
     );

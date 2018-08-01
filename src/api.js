@@ -1,29 +1,21 @@
-import moment from 'moment';
-const BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?";
-const API_KEY = "72d5271adda69d920581266b4f58bfa4";
+import axios from 'axios'
+const BASE_URL = `https://api.weatherbit.io/v2.0/forecast/daily?`
+const API_KEY = '904353f24dcf48fcac3795521e1259b9'
 
-const reqByCity = (city = 'London') => {
-  let qFill = `q=${city || 'London'}&units=metric&appid=`;
-  let url = BASE_URL + qFill + API_KEY;
-
-  return fetch(url)
-  .then((response) => (
-    response.json()
-      .then(json => ({json, response}))
-      .catch(() => ({ json: {}, response}))
-  ))
-  .then(({ json, response}) => {
-    if ( response.ok === 'false') throw json
-    console.log(json);
-    let currentTime = json.list[0].dt_txt.slice(11);
-    let timeIsLate = false;
-    Number(currentTime.slice(0,2)) >= 21 ? timeIsLate = true : timeIsLate = false;
-    
-    let weather = json.list.filter((day, index) => {
-      return timeIsLate ? (index === 0 ? day.dt_txt.indexOf(currentTime) !== -1 : day.dt_txt.indexOf('15:00:00') !== -1) : day.dt_txt.indexOf(currentTime) !== -1;
+export const reqByCity = (city) => {
+  let url = `${BASE_URL}city=${city}&days=5&key=${API_KEY}`
+  return axios.get(url)
+    .then(response => {
+      return response.data
     })
-    return weather
-  })
+    .catch(e => { console.log(e) })
 }
 
-export default reqByCity;
+export function getLocation(lat, lon) {
+  // let fccUrl = `${FCC_API}lat=${lat}&lon=${lon}`
+  let geoStats = `lat=${lat}&lon=${lon}&days=5&key=`
+  let url = BASE_URL + geoStats + API_KEY
+  return axios.get(url)
+  .then(data => data.data)
+  .catch(e => console.log(e) )
+}

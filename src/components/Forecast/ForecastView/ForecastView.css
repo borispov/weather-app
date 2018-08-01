@@ -1,9 +1,12 @@
 .ForecastView__weather {
-  box-shadow: 0 0 1px 2px #ffffff39;
+  /* box-shadow: 0 0 1px 3px #ffffff39; */
+  box-shadow: 0 0 0 1.5px #e3e3e3aa;
   font-family: sans-serif;
   padding: 10px;
-  width: 125px;
-  height: 200px;
+  width: 135px;
+  height: 240px;
+  /* background-color: #4876C3; */
+  background-color: rgb(61, 62, 63);
 }
 
 @media only screen and (max-width: 768px) {
@@ -16,10 +19,31 @@
   font-weight: bold;
 }
 
-.desc {
-  color: blue;
+p {
+  padding: 5px;
+  color: white;
 }
 
-p {
-  padding: 4px;
+i {
+  font-size: 55px;
+  padding-top: 15px;
+  color: rgb(224, 187, 187);
+}
+
+.temps {
+  margin: 0;
+  padding: 0;
+}
+
+.ForecastView__weather__temp-min {
+  font-style: italic;
+  padding-left: 1px;
+  color: rgb(119, 153, 182);
+}
+
+.ForecastView__weather__temp-high {
+  padding-right: 10px;
+  color: rgb(141, 247, 247);
+  font-size: 1.1rem;
+  font-weight: bold;
 }
