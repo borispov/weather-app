@@ -1,14 +1,18 @@
 .forecaster {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  margin: -10px;
   color: white;
+  overflow: visible;
+  width: 100%;
+  padding-right: 5px;
 }
 
-@media only screen and (max-width: 966px) {
+@media only screen and (max-width: 1024px) {
   .forecaster {
-    flex-flow: row wrap;
+    margin: 0;
+    padding: 2.5px;
+    justify-content: space-between
   }
 }
 
@@ -20,7 +24,8 @@
 
 .forecaster>* {
   margin: 10px;
-  height: 250px;
+  height: 100%;
+  width: 100%;
 }
 
 .forecaster__location {

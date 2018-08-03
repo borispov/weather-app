@@ -3,15 +3,16 @@
 .App {
   width: 66.6%;
   font-family: 'Montserrat', sans-serif;
-  min-width: 400px;
-  margin: 0 auto;
   text-align: center;
+  margin: auto;
+  padding-right: 5%;
 }
 
 
-@media only screen and (max-width: 768px) {
+
+@media (min-width: 1024px) and (max-width: 2000px) {
   .App {
-    width: 100%;
+    padding-top: 5%;
   }
 }
 

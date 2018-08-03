@@ -9,14 +9,12 @@ const forecastView = props => (
         <span className="date">{props.date}</span>
       </p>
       <p className="temps">
-        <span
-          className="wi wi-thermometer"
-        />
-        <span className="ForecastView__weather__temp-high">
-          {props.temp_max}
+        {/* <span className="wi wi-thermometer"/> */}
+        <span className="ForecastView__weather__temp">
+          {props.temp_max} <span>/</span>
         </span>
-        <span className="ForecastView__weather__temp-min">
-          {props.temp_min}
+        <span className="ForecastView__weather__temp">
+          {props.temp_min} <span>&deg;</span>
         </span>
       </p>
       <p>

@@ -53,7 +53,7 @@ class Forecast extends React.Component {
     })
   }
 
-  // Somewhat complicated shouldComponentUpdate List.. will try to refactor it later.
+  // Somewhat complicated shouldComponentUpdate List.. will try to refactor it later. bh                                                                                                                                                                                                                                bgit
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.cityName !== nextProps.cityName) {
       const cityName = nextProps.cityName
@@ -103,8 +103,8 @@ class Forecast extends React.Component {
       place: result.city_name + ', ' + result.country_code,
       forecast: result.data.map(day => ({
         date: moment.utc(day.ts * 1000).format("MMM Do dddd"),
-        temp_max: day.max_temp,
-        temp_min: day.min_temp,
+        temp_max: day.max_temp.toFixed(0),
+        temp_min: day.min_temp.toFixed(0),
         humidity: day.rh,
         weather: day.weather
       }))
@@ -114,7 +114,7 @@ class Forecast extends React.Component {
   render() {
     return <React.Fragment>
         <div className="forecast">
-        // check if this.state.forecast contains the array of data fetched, if yes, render it. 
+        {/* check if this.state.forecast contains the array of data fetched, if yes, render it.  */}
           {this.state.forecast.length ? <React.Fragment>
               <h1 style={{ color: "whitesmoked" }} className="forecaster__location">
                 {this.state.place}
