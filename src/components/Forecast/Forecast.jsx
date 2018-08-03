@@ -22,6 +22,7 @@ class Forecast extends React.Component {
     this.geoPosition()
   }
 
+  // get user's geolocation and set it to the state. 
   geoPosition = () => {
     this.setState({loading: true})
     navigator.geolocation.getCurrentPosition(
@@ -41,6 +42,8 @@ class Forecast extends React.Component {
     this.props.passErrorMsg(msg)
   }
 
+  // method to fetch Weather with user's current location, 
+  // the purpose is to show data before the user searches for anything. 
   async fetchCurrent(lat, lng) {
     getLocation(lat, lng)
     .then(data => {
@@ -50,11 +53,13 @@ class Forecast extends React.Component {
     })
   }
 
+  // Somewhat complicated shouldComponentUpdate List.. will try to refactor it later.
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.cityName !== nextProps.cityName) {
       const cityName = nextProps.cityName
       this.setState(prevState => ({ cityName: cityName }))
       this.getForecastData(cityName)
+      if (this.state.errorMessage) return false
       return true
     } 
     else if (nextState.location.lat !== this.state.location.lat) {
@@ -68,9 +73,13 @@ class Forecast extends React.Component {
 
   async getForecastData(city) {
     // function to handle Wrong Cities In The Input
-    const handleWrongInput = () => {
+    const handleWrongInput = async () => {
       let errorMessage = 'Invalid City, Please Insert Correct City';
-      this.setState({ errorMessage })
+      console.log(errorMessage)
+      await this.setState({ errorMessage })
+
+      //handle the Error to the Parent Component, Which passed it to the Input Component
+      this.handleErrorMsg(errorMessage) 
     }
 
     let result; // store the fetch values here. 
@@ -79,8 +88,11 @@ class Forecast extends React.Component {
       if (typeof result === "object") {
         this.filterFetchedData(result)
         this.setState({ errorMessage: null})
+        // Let the Input Component Know that there is no error to show. pass null.
+        this.handleErrorMsg(null)
         this.forceUpdate()
       }
+      // if result contains a 'string', it means an Error occured typing wrong City. 
       typeof result === 'string' && handleWrongInput()
     } 
   }
@@ -100,11 +112,9 @@ class Forecast extends React.Component {
   }
 
   render() {
-
-    this.state.errorMessage ? this.handleErrorMsg(this.state.errorMessage) : this.handleErrorMsg(null);
-
     return <React.Fragment>
         <div className="forecast">
+        // check if this.state.forecast contains the array of data fetched, if yes, render it. 
           {this.state.forecast.length ? <React.Fragment>
               <h1 style={{ color: "whitesmoked" }} className="forecaster__location">
                 {this.state.place}
