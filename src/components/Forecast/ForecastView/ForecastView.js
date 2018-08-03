@@ -1,18 +1,16 @@
 import React from 'react';
 import './ForecastView.css';
-import './owf/css/owfont-regular.css';
 import './weather-icons-master/css/weather-icons.css';
 
 const forecastView = props => (
   <div className={props.classname}>
     <div className="ForecastView__weather">
-      <p>
+      <p className="ForecstView__date">
         <span className="date">{props.date}</span>
       </p>
       <p className="temps">
         <span
           className="wi wi-thermometer"
-          style={{ fontSize: "24px", paddingLeft: '-15px', paddingRight: "15px", opacity: '0.5' }}
         />
         <span className="ForecastView__weather__temp-high">
           {props.temp_max}

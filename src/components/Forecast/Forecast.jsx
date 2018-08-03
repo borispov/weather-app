@@ -15,6 +15,7 @@ class Forecast extends React.Component {
     forecast: [],
     current: [],
     cityName: this.props.cityName,
+    errorMessage: '',
   }
   
   componentDidMount() {
@@ -22,7 +23,6 @@ class Forecast extends React.Component {
   }
 
   geoPosition = () => {
-    console.log('geoPOsition)')
     this.setState({loading: true})
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -35,6 +35,10 @@ class Forecast extends React.Component {
         }))
       }
     )
+  }
+
+  handleErrorMsg = (msg) => {
+    this.props.passErrorMsg(msg)
   }
 
   async fetchCurrent(lat, lng) {
@@ -54,6 +58,7 @@ class Forecast extends React.Component {
       return true
     } 
     else if (nextState.location.lat !== this.state.location.lat) {
+      if (this.state.location.lat !== null) {return false}
       const { lat, lon } = nextState.location
       this.fetchCurrent(lat, lon)
       return true
@@ -62,12 +67,22 @@ class Forecast extends React.Component {
   }
 
   async getForecastData(city) {
-    let result;
+    // function to handle Wrong Cities In The Input
+    const handleWrongInput = () => {
+      let errorMessage = 'Invalid City, Please Insert Correct City';
+      this.setState({ errorMessage })
+    }
+
+    let result; // store the fetch values here. 
     if (city) {
       result = await reqByCity(city)
-      this.filterFetchedData(result);
+      if (typeof result === "object") {
+        this.filterFetchedData(result)
+        this.setState({ errorMessage: null})
+        this.forceUpdate()
+      }
+      typeof result === 'string' && handleWrongInput()
     } 
-    this.forceUpdate();
   }
 
   filterFetchedData = (result) => {
@@ -85,35 +100,36 @@ class Forecast extends React.Component {
   }
 
   render() {
-    console.log(this.state.location)
-    return (
-      <React.Fragment >
-        <div className="forecast" >
-          {
-          this.state.forecast.length ? (
-            <React.Fragment>
-            <h1 style={{color: 'whitesmoked'}} className="forecaster__location">{this.state.place}</h1>
+
+    this.state.errorMessage ? this.handleErrorMsg(this.state.errorMessage) : this.handleErrorMsg(null);
+
+    return <React.Fragment>
+        <div className="forecast">
+          {this.state.forecast.length ? <React.Fragment>
+              <h1 style={{ color: "whitesmoked" }} className="forecaster__location">
+                {this.state.place}
+              </h1>
               <div className="forecaster">
-                {this.state.forecast.map((item, index) => 
-                  (index < 5) && ( 
-                  <ForecastView className={`day${index+1}`}
-                    key={item.date + '_' + index} 
-                    loading={this.state.loading}
-                    place={item.place}
-                    date={!index ? 'Today' : item.date}
-                    temp_max={item.temp_max}
-                    temp_min={item.temp_min}
-                    humidity={item.humidity}
-                    weather={item.weather.code}  
-                  />)
+                {this.state.forecast.map(
+                  (item, index) =>
+                    index < 5 && (
+                      <ForecastView
+                        className={`day${index + 1}`}
+                        key={item.date + "_" + index}
+                        loading={this.state.loading}
+                        place={item.place}
+                        date={!index ? "Today" : item.date}
+                        temp_max={item.temp_max}
+                        temp_min={item.temp_min}
+                        humidity={item.humidity}
+                        weather={item.weather.code}
+                      />
+                    )
                 )}
               </div>
-            </React.Fragment>
-          ) : null
-          }
+            </React.Fragment> : null}
         </div>
-      </React.Fragment>
-    )
+      </React.Fragment>;
   }
 }
 

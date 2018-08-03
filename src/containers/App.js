@@ -9,7 +9,13 @@ class App extends Component {
   state = {
     input: '',
     search: '',
+    error: '',
   } 
+
+  handleError = (errMsg = null) => {
+    this.setState({ error: errMsg })
+    this.forceUpdate();
+  }
 
   submitHandler = (event) => {
     event.preventDefault();
@@ -31,10 +37,10 @@ class App extends Component {
     return (
       <div className="App">
         <Timer />
-        <Forecast cityName={this.state.search}  />
+        <Forecast cityName={this.state.search} passErrorMsg={this.handleError} />
         <br/>
         {/* <p className="cityName">{this.state.search}</p> */}
-        <Form click={this.submitHandler} />
+        <Form click={this.submitHandler} error={this.state.error} />
       </div>
     );
   }
