@@ -11,7 +11,7 @@ const forecastView = props => (
       <p className="temps">
         {/* <span className="wi wi-thermometer"/> */}
         <span className="ForecastView__weather__temp">
-          {props.temp_max} <span>/</span>
+          {props.temp_max} <span>&deg; &ensp;</span>
         </span>
         <span className="ForecastView__weather__temp">
           {props.temp_min} <span>&deg;</span>
@@ -20,7 +20,7 @@ const forecastView = props => (
       <p>
         Humidity: <span className="desc">{props.humidity}%</span>
       </p>
-      <div>
+      <div className="weatherIcon" >
         <i className={`wi wi-owm-${props.weather}`} />
       </div>
     </div>

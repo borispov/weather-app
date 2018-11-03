@@ -1,6 +1,7 @@
 .forecaster {
   display: flex;
   justify-content: space-around;
+  flex-flow: row wrap;
   align-items: center;
   color: white;
   overflow: visible;
@@ -8,24 +9,27 @@
   padding-right: 5px;
 }
 
-@media only screen and (max-width: 1024px) {
+/* @media only screen and (max-width: 1024px) {
   .forecaster {
     margin: 0;
     padding: 2.5px;
     justify-content: space-between
   }
-}
+} */
 
 @media only screen and (max-width: 768px) {
   .forecaster {
     flex-direction: column;
+  }
+  .forecaster > * {
+    width: 100%;
   }
 }
 
 .forecaster>* {
   margin: 10px;
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .forecaster__location {

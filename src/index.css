@@ -8,8 +8,8 @@ body {
    background-image: url('./assets/img/weather.jpeg');
    background-repeat: no-repeat;
    background-position: 50% 50%;
-   background-color: rgba(0, 0, 0, 0.3);
+   background-color: rgba(86, 10, 190, 0.55);
    background-blend-mode: darken;
    background-attachment: fixed;
-   /* background-color: #1853B3; */
+   /* background-color: #1853B3AA; */
 }

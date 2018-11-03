@@ -12,7 +12,7 @@ const input = props => {
   return (
     <div>
       <form onSubmit={props.click} className="search-form" action="">
-        <input name="city" className="search-form__input" type="text" autoComplete="off" autoFocus="true"/>
+        <input name="city" placeholder="Search For Your City!" className="search-form__input" type="text" autoComplete="off" autoFocus="true"/>
         {
           (props.error) ? <p style={errorStyle}>{props.error}</p> : null
         }

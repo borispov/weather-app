@@ -1,12 +1,11 @@
 .ForecastView__weather {
-  /* box-shadow: 0 0 1px 3px #ffffff39; */
-  box-shadow: 0 0 0 1.5px #e3e3e3aa;
+  box-shadow: 0 2px 1px 2px rgba(20,20,20, 0.2);
   font-family: sans-serif;
   padding: 10px;
   width: 135px;
-  height: 240px;
-  /* background-color: #4876C3; */
-  background-color: rgb(61, 62, 63);
+  /* height: 240px; */
+  height: 250px;
+  background-color: rgb(58, 21, 73);
 }
 
 .ForecstView__date {
@@ -32,8 +31,14 @@ p {
 
 i {
   font-size: 55px;
-  padding-top: 15px;
+  font-size: 3rem;
+  margin-top: 15px;
   color: rgb(224, 187, 187);
+}
+
+.weatherIcon {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
 }
 
 .temps {
@@ -48,9 +53,7 @@ i {
 }
 
 .ForecastView__weather__temp {
-  font-style: italic;
-  /* color: rgb(163, 174, 184); */
-  color: rgb(141, 247, 247);
+  color: rgb(163, 174, 184);
   font-size: 1.1rem;
   font-weight: bold;
 }
@@ -64,7 +67,7 @@ i {
 
 @media only screen and (max-width: 1024px) {
   .ForecastView__weather {
-    width: 90%;
+    width: 100%;
     padding: 5px;
     height: 100%;
   }
